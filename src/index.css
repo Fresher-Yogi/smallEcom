@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+@import url('https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Plus Jakarta Sans", sans-serif;
+  --font-body: "General Sans", sans-serif;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: #FAF9F6;
+  color: #1A1A1A;
+}

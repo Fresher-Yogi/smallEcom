@@ -9,17 +9,17 @@ let authSlice = createSlice({
     isLoading: true,
   },
   reducers: {
-    // addUser: (state, action) => {
-    //   (state.loggedInUser = action.payload),
-    //     (state.isAuthenticated = true),
-    //     (state.isLoading = false)
-    // },
+    addUser: (state, action) => {
+      (state.loggedInUser = action.payload),
+        (state.isAuthenticated = true),
+        (state.isLoading = false)
+    },
 
-    // removeUser: (state, action) => {
-    //   state.loggedInUser = null;
-    //   state.isAuthenticated = false;
-    //   state.isLoading = false;
-    // },
+    removeUser: (state, action) => {
+      state.loggedInUser = null;
+      state.isAuthenticated = false;
+      state.isLoading = false;
+    },
   },
   extraReducers: (builder) => {
     builder

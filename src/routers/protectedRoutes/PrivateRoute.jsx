@@ -1,11 +1,14 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Outlet } from "react-router";
+import { Navigate, Outlet } from "react-router";
 
 const PrivateRoute = () => {
-  let { loggedInUser } = useSelector((store) => store.auth);
+  let { loggedInUser, isLoading } = useSelector((store) => store.auth);
+  console.log(loggedInUser);
 
-  if (!loggedInUser) return <h1> Loading State!! </h1>
+  if (isLoading) return <h1>Loading</h1>;
+
+  if (!loggedInUser) return <Navigate to="/" replace />;
 
   return <Outlet />;
 };

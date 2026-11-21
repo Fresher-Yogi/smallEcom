@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import {
   ShoppingCart,
@@ -9,10 +8,16 @@ import {
   ArrowRight,
   ShoppingBag,
 } from "lucide-react";
+import { useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
+import { removeUser } from "../../../features/auth/state/authSlice";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
+  let navigate = useNavigate();
+
+  let dispatch = useDispatch();
 
   const navLinks = [
     { name: "Home", path: "/main" },
@@ -26,7 +31,6 @@ const Navbar = () => {
       <header className="w-full bg-[#F4F1EA] text-[#1A1A1A] border-b border-[#A3B19B]/40 relative z-30">
         <nav className="max-w-[1500px] mx-auto px-5 md:px-10">
           <div className="h-[85px] flex items-center justify-between">
-
             {/* LOGO */}
             <a href="/" className="flex items-center gap-2 shrink-0">
               <div className="w-10 h-10 bg-[#1A1A1A] rounded-xl flex items-center justify-center">
@@ -60,7 +64,6 @@ const Navbar = () => {
 
             {/* RIGHT ACTIONS */}
             <div className="flex items-center gap-3 sm:gap-5">
-
               {/* CART BUTTON */}
               <button
                 onClick={() => setCartOpen(true)}
@@ -85,7 +88,11 @@ const Navbar = () => {
 
               {/* LOGOUT */}
               <button
-                onClick={() => console.log("Logout clicked")}
+                onClick={() => {
+                  localStorage.removeItem("accessToken");
+                  navigate("/", { replace: true });
+                  dispatch(removeUser());
+                }}
                 className="hidden sm:flex items-center gap-2 bg-[#1A1A1A] text-[#FAF9F6] px-5 py-3 rounded-full text-xs font-semibold hover:bg-[#A3B19B] hover:text-[#1A1A1A] transition-all duration-300"
               >
                 <LogOut size={16} />
@@ -127,7 +134,11 @@ const Navbar = () => {
                 </a>
 
                 <button
-                  onClick={() => console.log("Logout clicked")}
+                  onClick={() => {
+                    localStorage.removeItem("accessToken");
+                    navigate("/", { replace: true });
+                    dispatch(removeUser());
+                  }}
                   className="mt-3 flex items-center justify-center gap-2 bg-[#1A1A1A] text-white py-3 rounded-xl text-sm font-semibold"
                 >
                   <LogOut size={17} />
@@ -158,9 +169,7 @@ const Navbar = () => {
         {/* CART HEADER */}
         <div className="flex items-center justify-between px-6 py-6 border-b border-[#E7E3DB]">
           <div>
-            <h2 className="font-display text-2xl font-semibold">
-              Your Cart
-            </h2>
+            <h2 className="font-display text-2xl font-semibold">Your Cart</h2>
             <p className="text-xs text-[#4A4540] mt-1">
               Your favourites, all in one place.
             </p>
@@ -190,8 +199,8 @@ const Navbar = () => {
           </h3>
 
           <p className="text-sm text-[#4A4540] leading-6 mt-3 max-w-[270px]">
-            Looks like you haven't added anything to your cart yet.
-            Let's find something you'll love.
+            Looks like you haven't added anything to your cart yet. Let's find
+            something you'll love.
           </p>
 
           <button

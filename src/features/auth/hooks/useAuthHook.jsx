@@ -19,7 +19,7 @@ const useAuth = () => {
     console.log(data);
   }
 
-  // login form
+  // login form  
   async function loginForm(data) {
     console.log('loginform data', data);
     try {
